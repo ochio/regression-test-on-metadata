@@ -8,6 +8,6 @@
 		"source.fixAll.eslint": true // ファイル保存時に ESLint でフォーマット
 	},
 	"code-runner.executorMap": {
-		"typescript": "npx ts-node"
+		"typescript": "npx ts-node --esm"
 	}
 }
