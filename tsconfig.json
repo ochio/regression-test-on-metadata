@@ -11,7 +11,8 @@
 		"esModuleInterop": true,
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
-		"forceConsistentCasingInFileNames": true
+		"forceConsistentCasingInFileNames": true,
+		"types": ["vitest/globals"]
 	},
 	"include": ["src/**/*"],
 	"exclude": ["dist"],
