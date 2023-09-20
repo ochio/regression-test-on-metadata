@@ -4,7 +4,7 @@
 		"module": "esnext",
 		"sourceMap": true,
 		"outDir": "./dist",
-		"rootDir": "./src",
+		"rootDir": ".",
 		"strict": true,
 		"moduleResolution": "node",
 		"baseUrl": "src",
@@ -14,7 +14,5 @@
 		"forceConsistentCasingInFileNames": true,
 		"types": ["vitest/globals"]
 	},
-	"include": ["src/**/*"],
-	"exclude": ["dist"],
 	"compileOnSave": false
 }
