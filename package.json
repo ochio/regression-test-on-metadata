@@ -4,7 +4,7 @@
 	"description": "",
 	"type": "module",
 	"scripts": {
-		"ts-node": "ts-node --esm ./src/index.ts",
+		"execute": "ts-node --esm ./src/index.ts",
 		"build": "tsc --project tsconfig.build.json",
 		"build:watch": "tsc --watch",
 		"test": "vitest"
