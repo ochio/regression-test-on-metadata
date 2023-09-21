@@ -1,7 +1,11 @@
-import { isValidArgs } from "../../src/validate/args";
+import { isValidArgs } from "validate/args";
 
 describe("validate args", () => {
-	test("test", () => {
-		expect(isValidArgs(["node index.js hoge"])).toBe(false);
+	test("arg length is 3", () => {
+		expect(isValidArgs(["node", "index.js", "__URL__"])).toBe(true);
+	});
+
+	test("arg length is not 3", () => {
+		expect(isValidArgs(["node", "index.js", "__URL__", "EXTRA_ARG"])).toBe(false);
 	});
 });
