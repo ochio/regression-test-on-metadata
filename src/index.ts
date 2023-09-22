@@ -3,6 +3,8 @@ import { HTMLMetaElement, Window } from "happy-dom";
 import { metadataType } from "./type";
 import { isValidArgs } from "./validate/args.js";
 
+import { promises as fs } from "fs";
+
 const args = process.argv;
 
 if (!isValidArgs(args)) {
@@ -27,4 +29,22 @@ if (!isValidArgs(args)) {
 	metadata.description = (
 		document.querySelector('meta[name="description"]') as HTMLMetaElement
 	).content;
+
+	async function dirExists(filepath: string) {
+		try {
+			return !(await fs.lstat(filepath)).isFile();
+		} catch (e) {
+			return false;
+		}
+	}
+
+	try {
+		const dirExist = await dirExists("snapshots");
+		if (!dirExist) {
+			await fs.mkdir("snapshots");
+		}
+		await fs.writeFile("snapshots/metadata.json", JSON.stringify(metadata));
+	} catch (e) {
+		console.log(e);
+	}
 })();
