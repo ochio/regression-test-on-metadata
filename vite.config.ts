@@ -5,4 +5,9 @@ export default defineConfig({
 	test: {
 		globals: true,
 	},
+	resolve: {
+		alias: {
+			"@": __dirname + "/src",
+		},
+	},
 });

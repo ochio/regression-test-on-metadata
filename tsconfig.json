@@ -13,7 +13,10 @@
 		"emitDecoratorMetadata": true,
 		"forceConsistentCasingInFileNames": true,
 		"types": ["vitest/globals"],
-		"skipLibCheck": true
+		"skipLibCheck": true,
+		"paths": {
+			"@/*": ["*"]
+		}
 	},
 	"compileOnSave": false
 }
