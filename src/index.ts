@@ -2,7 +2,7 @@ import fetch from "node-fetch";
 import { HTMLMetaElement, Window } from "happy-dom";
 import { metadataType } from "./type";
 import { isValidArgs } from "./validate/args.js";
-
+import { dirExists } from "./utils/dirExists.js";
 import { promises as fs } from "fs";
 
 const args = process.argv;
@@ -29,14 +29,6 @@ if (!isValidArgs(args)) {
 	metadata.description = (
 		document.querySelector('meta[name="description"]') as HTMLMetaElement
 	).content;
-
-	async function dirExists(filepath: string) {
-		try {
-			return !(await fs.lstat(filepath)).isFile();
-		} catch (e) {
-			return false;
-		}
-	}
 
 	try {
 		const dirExist = await dirExists("snapshots");
