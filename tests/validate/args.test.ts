@@ -1,4 +1,4 @@
-import { isValidArgs } from "validate/args";
+import { isValidArgs } from "@/validate/args";
 
 describe("validate args", () => {
 	test("引数が3つの時はtrue", () => {
