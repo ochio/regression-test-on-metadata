@@ -32,9 +32,15 @@ if (!isValidArgs(args)) {
 
 	try {
 		const dirExist = await dirExists("snapshots");
+
 		if (!dirExist) {
 			await fs.mkdir("snapshots");
+		} else {
+			const previousMetadata: metadataType = JSON.parse(
+				await fs.readFile("snapshots/metadata.json", "utf8"),
+			);
 		}
+
 		await fs.writeFile("snapshots/metadata.json", JSON.stringify(metadata));
 	} catch (e) {
 		console.log(e);
