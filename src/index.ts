@@ -4,6 +4,7 @@ import { metadataType } from "./type";
 import { isValidArgs } from "./validate/args.js";
 import { dirExists } from "./utils/dirExists.js";
 import { promises as fs } from "fs";
+import { compare } from "./utils/compare";
 
 const args = process.argv;
 
@@ -40,32 +41,7 @@ if (!isValidArgs(args)) {
 				await fs.readFile("snapshots/metadata.json", "utf8"),
 			);
 
-			const mateDateAreEqual = (currentMatadata: any, previousMetadata: any) => {
-				const getKeys = <T extends { [key: string]: unknown }>(obj: T): (keyof T)[] => {
-					return Object.keys(obj);
-				};
-				const currKeys = getKeys(currentMatadata);
-				const prevKeys = getKeys(previousMetadata);
-
-				// プロパティの数が異なる場合
-				if (currKeys.length !== prevKeys.length) {
-					return false;
-				}
-
-				// オブジェクトの型がプリミティブの場合
-				if (typeof currentMatadata !== "object") {
-					return currentMatadata === previousMetadata;
-				}
-
-				for (const key of currKeys) {
-					if (!mateDateAreEqual(currentMatadata[key], previousMetadata[key])) {
-						return false;
-					}
-				}
-
-				return true;
-			};
-			console.log(mateDateAreEqual(metadata, previousMetadata));
+			console.log(compare(metadata, previousMetadata));
 		}
 
 		await fs.writeFile("snapshots/metadata.json", JSON.stringify(metadata));
