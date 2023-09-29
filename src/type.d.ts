@@ -1,4 +1,6 @@
 export type metadataType = {
-	title: string;
-	description: string;
+	[k in string]: {
+		title: string;
+		description: string;
+	};
 };

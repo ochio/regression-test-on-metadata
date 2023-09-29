@@ -4,7 +4,7 @@ import { metadataType } from "./type";
 import { isValidArgs } from "./validate/args.js";
 import { dirExists } from "./utils/dirExists.js";
 import { promises as fs } from "fs";
-import { compare } from "./utils/compare";
+import { compare } from "./utils/compare.js";
 
 const args = process.argv;
 
@@ -21,13 +21,14 @@ if (!isValidArgs(args)) {
 	const document = window.document;
 	document.write(html);
 
-	const metadata: metadataType = {
+	const metadata = {} as metadataType;
+	metadata[url] = {
 		title: "",
 		description: "",
 	};
 
-	metadata.title = document.title;
-	metadata.description = (
+	metadata[url].title = document.title;
+	metadata[url].description = (
 		document.querySelector('meta[name="description"]') as HTMLMetaElement
 	).content;
 
